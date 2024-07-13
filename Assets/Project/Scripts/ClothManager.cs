@@ -8,7 +8,8 @@ public class ClothManager : MonoBehaviour
     [SerializeField] private Transform moveObject;
     private Transform selectedobject;
     private Camera mCamera;
-    private bool check;
+    private bool delay;
+
     private Vector3 moveDir;
 
     private void Awake()
@@ -16,11 +17,7 @@ public class ClothManager : MonoBehaviour
         mCamera = Camera.main;
     }
 
-    public void ReloadScene()
-    {
-        SceneManager.LoadScene(2);
-    }
-
+  
     public void MainMenu()
     {
         SceneManager.LoadScene(0);
@@ -28,23 +25,31 @@ public class ClothManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0) )
         {
             moveDir = mCamera.ScreenToWorldPoint(Input.mousePosition);
             moveDir.z = 0f;
             moveObject.position = Vector3.Lerp(moveObject.position , moveDir, 5f * Time.deltaTime);
+            if(!delay)
+            {
+                AudioManageCloth.Instance.PlaySound();
+                delay = true;
+                Invoke(nameof(ResetDelay),2f);
+            }
         }
-
-        if (Input.GetKeyDown(KeyCode.R))
+        else
         {
-            ReloadScene();
-        }
-        if (Input.GetKeyDown(KeyCode.M))
-        {
-            MainMenu();
+            AudioManageCloth.Instance.Stop();
         }
 
        
+
+       
+    }
+
+    private void ResetDelay()
+    {
+        delay = false;
     }
 }
 

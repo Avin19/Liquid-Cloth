@@ -24,6 +24,7 @@ public class Manager : MonoBehaviour
 
    private void Start()
    {
+      Screen.orientation = ScreenOrientation.LandscapeRight;
       loadingPanel.gameObject.SetActive(false);
    }
 

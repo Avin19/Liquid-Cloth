@@ -7,8 +7,8 @@ PhysicMaterial:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Water
-  dynamicFriction: 1.29
-  staticFriction: 1.49
-  bounciness: 0.1
+  dynamicFriction: 0.12
+  staticFriction: 0.22
+  bounciness: 0
   frictionCombine: 0
   bounceCombine: 0
